@@ -1,0 +1,53 @@
+<div style="text-align:center">
+  <div class="d2s">
+    <div id="target" class="specific">
+      <ul class="main" id="list">
+        <li class="mc-block" *ngFor="let item of pallete.color_set;">
+          <div class="mc anim0" [ngStyle]="setBlockStyles(item)" >
+            <span class="hexval">#{{item.code_hex}}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="clr"></div>
+  </div>
+  <div class="tags"><a class="button small tag" href="/palettes/brown" tag="brown" type="color">brown</a><a
+      class="button small tag" href="/palettes/beige" tag="beige" type="color">beige</a><a class="button small tag"
+      href="/palettes/cream" tag="cream" type="undefined">cream</a><a class="button small tag" href="/palettes/coffee"
+      tag="coffee" type="undefined">coffee</a><a class="button small tag" href="/palettes/fall" tag="fall"
+      type="undefined">fall</a><a class="button small tag" href="/palettes/pastel" tag="pastel"
+      type="undefined">pastel</a><a class="button small tag" href="/palettes/vintage" tag="vintage"
+      type="undefined">vintage</a><a class="button small tag" href="/palettes/warm" tag="warm" type="undefined">warm</a><a
+      class="button small tag" href="/palettes/earth" tag="earth" type="undefined">earth</a><a class="button small tag"
+      href="/palettes/light" tag="light" type="undefined">light</a><a class="button small tag" href="/palettes/skin"
+      tag="skin" type="undefined">skin</a></div>
+  <div class="centerd">
+    <div class="color-info">
+      <table>
+        <tbody>
+          <tr>
+            <th>Color</th>
+            <th>Information</th>
+            <th class="nomobile">Shades</th>
+          </tr>
+          <tr *ngFor="let item of pallete.color_set;">
+            <td class="color-pre">
+              <span class="color-display" [ngStyle]="setColorPreviewStyle(item)"></span>Diamond
+            </td>
+            <td>
+              <ul>
+                <li>Name: Diamond</li>
+                <li>Hex: <span class="capi">#{{item.code_hex}}</span></li>
+                <li>{{item.code_web}}</li>
+                <li>CMYK: 0.225, 0, 0.012, 0.043</li>
+              </ul>
+            </td>
+            <td class="more-shades nomobile">
+              <span [ngStyle]="setShadeStyle(item)" class="flaticon-drop-silhouette"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

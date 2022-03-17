@@ -1,0 +1,18 @@
+<div class="feed global">
+  <div *ngFor="let item of colorThemes; let i = index" class="item" [attr.data-index]="i+1"  data-code="ffd32d008e89085e7d084594" [ngStyle]="{'animation-delay': (50*(i+1))+'ms'}"> 
+    <div class="palette" [routerLink]="['/detailpage',item.pallete_id]" >
+      <div *ngFor="let colorSet of item.color_set; ; let j = index" [ngClass]="'place c'+(item.color_set.length-j-1)"  [ngStyle]="{'background-color': colorSet.code_web}"> 
+        <span  data-copy="#084594">#{{colorSet.code_hex}}</span>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="actions flex">
+        <div class="button like" (click)="likePallete(item)">
+          <div class="icon" icon="like"></div>
+          <span>{{item.like}}</span>
+        </div>
+      </div>
+      <span class="date">{{item.timestamp | date}}</span>
+    </div>
+  </div>
+</div>

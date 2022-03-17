@@ -1,0 +1,24 @@
+<div class="nav-container">
+  <a [routerLink]="['content','new', '']" routerLinkActive="active" class="tab button" tab="new" (click)="cickMenu($event)">
+    <div class="icon" icon=new></div>New
+  </a>
+  <a [routerLink]="['content','popular', '']" class="tab button" tab="popular" (click)="cickMenu($event)">
+    <div class="icon" icon=popular></div>Popular
+  </a>
+  <div class="timeframe hide">
+    <div class="button small" timeframe="30" onclick="changeTimeframe(this)" status="on">Month</div>
+    <div class="button small" timeframe="365" onclick="changeTimeframe(this)">Year</div>
+    <div class="button small" timeframe="4000" onclick="changeTimeframe(this)">All time</div>
+  </div>
+  <a [routerLink]="['content','random', '']" class="tab button" tab="random" (click)="cickMenu($event)">
+    <div class="icon" icon=random></div>Random
+  </a>
+  <a [routerLink]="['content','collection', '']" class="tab button" tab="collection" (click)="cickMenu($event)">
+    <div class="icon" icon=like></div>Collection
+  </a>
+  <div class="line"></div>
+
+  <div *ngFor="let tag of tagList; let i = index" class="tags">
+    <a [routerLink]="['content', 'tag', tag.tag_id]" href="#" class="tab button small tag" tab="pastel">{{tag.tag_name}}</a>
+  </div>
+</div>

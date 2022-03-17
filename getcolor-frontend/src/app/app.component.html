@@ -1,0 +1,84 @@
+<div class="header">
+  <div class="wrap flex">
+    <div class="left">
+      <a href="/" class="logo flex">
+        <img src="/assets/images/logo/getcolor.png" style="width: 30px; margin-left: 10px;" />
+        <span class="mobileHide">GetColor.NET</span>
+      </a>
+    </div>
+    <div class="middle filterContainer" #filterContainer>
+      <div class="inputContainer flex">
+        <ng-container *ngFor="let item of selectedItemList; let i = index">
+          <div class="button tag" (click)="toggleTag(item)" [attr.tag]="item.tag_name.toLowerCase()" alt="" [attr.type]="item.type" status="on">{{item.tag_name}}<span class="x">✕</span></div>
+        </ng-container>
+        <input class="tag-input" #searchInput [ngClass]="inputFilled ? 'filled' : ''" placeholder="{{inputPlaceHolder}}" onkeyup="showTags()" (focusin)="onFocusInEvent($event)" />
+        <div class="searchIcon icon" icon="search"></div>
+        <a class="clear" href="/">✕</a>
+      </div>
+      <div class="filterWindow dropdown card" [ngClass]="showFilterWindow ? 'success' : 'hidden'">
+        <div class="color section">
+          <div class="title">Colors</div>
+          <ng-container *ngFor="let item of COLOR_DATA; let i = index">
+            <div class="button tag"  (click)="toggleTag(item)" alt="" [attr.type]="item.type" [attr.tag]="item.tag_name.toLowerCase()" >{{item.tag_name}}<span class="x">✕</span></div>
+          </ng-container>
+        </div>
+        <div class="line"></div>
+        <div class="collection section">
+          <div class="title">Collections</div>
+          <ng-container *ngFor="let item of tagList; let i = index">
+            <div class="button tag" (click)="toggleTag(item)" alt="">{{item.tag_name}}<span class="x">✕</span></div>
+          </ng-container>
+        </div>
+        <div class="line"></div>
+        <div class="related section hide">
+          <div class="title">Related</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="right flex">
+      <!-- <a target="_blank" href="//chrome.google.com/webstore/detail/hchlgfaicmddilenlflajnmomalehbom" class="button addToChrome"><img class="icon" src="/img/color-hunt-icon-chrome.png" />
+        Add to Chrome
+      </a> -->
+      <div class="kebab button iconButton" #menuButton (click)="onMenuClick()"><span></span><span></span><span></span></div>
+      <div [ngClass]="{'littleMenu': true, 'dropdown': true, 'card': true, 'hidden': _isMenuHidden == true }" >
+        <!-- <a class="tab button small" tab="palettes" href="/">Palettes</a> -->
+        <a routerLink="create" class="tab button small" tab="create" href="#">Create</a>
+        <!-- <a class="tab button small" tab="collection" href="/collection">Collection</a> -->
+        <div class="line"></div>
+        <a routerLink="about" class="tab button small" tab="about" href="#">About</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="wrap main flex">
+  <div class="left">
+    <div class="nav-container">
+      <a [routerLink]="['content','new', '']" routerLinkActive="active" class="tab button"  tab="new" (click)="cickMenu($event)">
+        <div class="icon" icon=new></div>New
+      </a>
+      <a [routerLink]="['content','popular', '']" class="tab button" tab="popular" (click)="cickMenu($event)">
+        <div class="icon" icon=popular></div>Popular
+      </a>
+      <div class="timeframe hide">
+        <div class="button small" timeframe="30" onclick="changeTimeframe(this)" status="on">Month</div>
+        <div class="button small" timeframe="365" onclick="changeTimeframe(this)">Year</div>
+        <div class="button small" timeframe="4000" onclick="changeTimeframe(this)">All time</div>
+      </div>
+      <a [routerLink]="['content','random', '']" class="tab button" tab="random" (click)="cickMenu($event)">
+        <div class="icon" icon=random></div>Random
+      </a>
+      <a [routerLink]="['content','collection', '']" class="tab button" tab="collection" (click)="cickMenu($event)">
+        <div class="icon" icon=like></div>Collection
+      </a>
+      <div class="line"></div>
+    
+      <div *ngFor="let tag of tagList; let i = index" class="tags">
+        <a [routerLink]="['content', 'tag', tag.tag_id]" href="#" class="tab button small tag" [attr.tab]="tag.tag_name.toLowerCase()" (click)="cickMenu($event)">{{tag.tag_name}}</a>
+      </div>
+    </div>
+  </div>
+  <div class="page">
+    <router-outlet></router-outlet>
+  </div>
+</div>

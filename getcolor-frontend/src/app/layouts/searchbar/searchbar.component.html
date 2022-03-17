@@ -1,0 +1,51 @@
+<div class="wrap flex">
+  <div class="left">
+    <a href="/" class="logo flex">
+      <img src="/assets/images/logo/getcolor.png" style="width: 30px; margin-left: 10px;" />
+      <span class="mobileHide">GetColor.NET</span>
+    </a>
+  </div>
+  <div class="middle filterContainer" #filterContainer>
+    <div class="inputContainer flex">
+      <ng-container *ngFor="let item of selectedItemList; let i = index">
+        <div class="button tag" (click)="toggleTag(item)" [attr.tag]="item.tag_name.toLowerCase()" alt="" [attr.type]="item.type" status="on">{{item.tag_name}}<span class="x">✕</span></div>
+      </ng-container>
+      <input class="tag-input" #searchInput [ngClass]="inputFilled ? 'filled' : ''" placeholder="{{inputPlaceHolder}}" onkeyup="showTags()" (focusin)="onFocusInEvent($event)" />
+      <div class="searchIcon icon" icon="search"></div>
+      <a class="clear" href="/">✕</a>
+    </div>
+    <div class="filterWindow dropdown card" [ngClass]="showFilterWindow ? 'success' : 'hidden'">
+      <div class="color section">
+        <div class="title">Colors</div>
+        <ng-container *ngFor="let item of COLOR_DATA; let i = index">
+          <div class="button tag"  (click)="toggleTag(item)" alt="" [attr.type]="item.type" [attr.tag]="item.tag_name.toLowerCase()" >{{item.tag_name}}<span class="x">✕</span></div>
+        </ng-container>
+      </div>
+      <div class="line"></div>
+      <div class="collection section">
+        <div class="title">Collections</div>
+        <ng-container *ngFor="let item of COLLECTION_DATA; let i = index">
+          <div class="button tag" (click)="toggleTag(item)" alt="">{{item.tag_name}}<span class="x">✕</span></div>
+        </ng-container>
+      </div>
+      <div class="line"></div>
+      <div class="related section hide">
+        <div class="title">Related</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right flex">
+    <!-- <a target="_blank" href="//chrome.google.com/webstore/detail/hchlgfaicmddilenlflajnmomalehbom" class="button addToChrome"><img class="icon" src="/img/color-hunt-icon-chrome.png" />
+      Add to Chrome
+    </a> -->
+    <div class="kebab button iconButton" #menuButton (click)="onMenuClick()"><span></span><span></span><span></span></div>
+    <div [ngClass]="{'littleMenu': true, 'dropdown': true, 'card': true, 'hidden': _isMenuHidden == true }" >
+      <a class="tab button small" tab="palettes" href="/">Palettes</a>
+      <a class="tab button small" tab="create" href="/create">Create</a>
+      <a class="tab button small" tab="collection" href="/collection">Collection</a>
+      <div class="line"></div>
+      <a class="tab button small" tab="about" href="/about">About</a>
+    </div>
+  </div>
+</div>

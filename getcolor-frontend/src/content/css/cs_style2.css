@@ -1,0 +1,11 @@
+.d2s {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Helvetica, roboto, Arial;
+    letter-spacing: .5px;
+    margin: 0;
+    padding: 0;
+    text-decoration-line: none;
+    -webkit-text-size-adjust: 100%;
+}
+
